@@ -1,8 +1,72 @@
-<form
+<!DOCTYPE html>
+<html>
+
+<!-- CSS -->
+<style>
+
+</style>
+
+<!-- Jquery -->
+<head>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    function paintoggle() {
+        if (document.getElementById('groin').checked ||document.getElementById('lateralhip').checked) {
+            document.getElementById('painclarification').style.display = 'block';
+        }
+        else document.getElementById('painclarification').style.display = 'none';
+
+    }
+
+</script>
+</head>
+
+
+
+<!-- Survey -->
+<form id="history"
   method="POST"
   action="https://script.google.com/macros/s/AKfycbzorsHBPOyYiytoGbI5lzDYaL2W_eXDqSo58AvP1fQxigbJnYz97toVlKGnHcv1ZM8/exec"
 >
-  <input name="Email" type="email" placeholder="Email" required>
-  <input name="Name" type="text" placeholder="Name" required>
-  <button type="submit">Send</button>
+<h1>Orthopaedic History Tool</h1>
+<h2>Patient demographics</h2>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname" required autofocus><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" required><br>
+  <label for="DOB">Date of Birth:</label>
+  <input type="date" id="DOB" name="DOB" required><br>
+
+
+  <input type="radio" id="male" name="sex" value="male">
+  <label for="male">Male</label>
+  <input type="radio" id="female" name="sex" value="female">
+  <label for="female">Female</label><br>
+
+<h2>Presenting Complaint</h2>
+<p>What is your main problem?</p>
+  <input type="radio" onclick="javascript:paintoggle();" id="groin" name="pc" value="groin pain">
+  <label for="groin">Groin Pain</label><br>
+  <input type="radio" onclick="javascript:paintoggle();" id="lateralhip" name="pc" value="lateral hip">
+  <label for="lateralhip">Pain on the outside of your hip</label><br>
+  <input type="radio" onclick="javascript:paintoggle();" id="mechanical" name="pc" value="mechanical">
+  <label for="mechanical">Clicking or catching</label><br>
+<br>
+
+<div id="painclarification" style="display:none">
+<p> Please clarify, do you also have back pain?</p>
+<input type="radio" id="yesback" name="backpain" value="backpain">
+<label for="yesback">Yes</label>
+<input type="radio" id="noback" name="backpain" value="notbackpain">
+<label for="noback">No</label><br>
+</div>
+
+  <button type="submit">Finish</button>
+
 </form>
+
+</html>
+<!--
+<input name="Email" type="email" placeholder="Email" required>
+  <input name="Name" type="text" placeholder="Name" required>
+-->
