@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+<form name="submit-to-google-sheet">
+  <input name="email" type="email" placeholder="Email" required>
+  <input name="firstName" type="text" placeholder="First Name">
+  <input name="lastName" type="text" placeholder="Last Name">
+  <button type="submit">Send</button>
+</form>
 
-You can use the [editor on GitHub](https://github.com/johnmaunder1991/orthohx/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzXXo_NUFUZ2eRVoIvmDKeo2KHhTQMSSG7Z_CaIBsSy18xQiTp0PuCY1adp0j6NP0KP/exec'
+  const form = document.forms['submit-to-google-sheet']
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/johnmaunder1991/orthohx/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
